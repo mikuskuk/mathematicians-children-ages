@@ -10,14 +10,13 @@ public class Main {
         Set<AgeCombination> ageSet = new HashSet<>();
 
         // Generate all possible combinations of ages for three children.
-        for (int age1 = 1; age1 <= product; age1++) {
-            for (int age2 = age1; age2 <= product; age2++) {
-                for (int age3 = age2; age3 <= product; age3++) {
+        for (int age1 = 1; age1 <= Math.cbrt(product); age1++) {
+            for (int age2 = age1; age2 <= Math.sqrt(product / age1); age2++) {
+                int age3 = product / (age1 * age2);
                     // Check if the product of ages equals the product of ages.
-                    if (age1 * age2 * age3 == product) {
-                        AgeCombination ageCombination = new AgeCombination(age1, age2, age3);
-                        ageSet.add(ageCombination);
-                    }
+                if (age1 * age2 * age3 == product) {
+                    AgeCombination ageCombination = new AgeCombination(age1, age2, age3);
+                    ageSet.add(ageCombination);
                 }
             }
         }
